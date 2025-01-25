@@ -1,6 +1,6 @@
 # default project configuration
 TEST ?= main
-PROJECT_TARGET ?= stm32f413ght
+PROJECT_TARGET ?= stm32f413rht
 
 # source and include directories
 PROJECT_C_SOURCES = $(wildcard apps/Src/*.c) $(wildcard drivers/Src/*.c)
