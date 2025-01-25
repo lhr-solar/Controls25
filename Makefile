@@ -4,7 +4,7 @@ PROJECT_TARGET ?= stm32f413rht
 
 # source and include directories
 PROJECT_C_SOURCES = $(wildcard apps/Src/*.c) $(wildcard drivers/Src/*.c)
-PROJECT_C_INCLUDES = Inc
+PROJECT_C_INCLUDES = apps/Inc drivers/Inc
 
 # build and driver directories
 PROJECT_BUILD_DIR = build
@@ -12,7 +12,7 @@ BUILD_MAKEFILE_DIR = Embedded-Sharepoint/
 
 # ensure all paths are absolute
 MAKEFILE_DIR = $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
-PROJECT_C_SOURCES := $(addprefix $(MAKEFILE_DIR)/, $(PROJECT_C_SOURCES))
+PROJECT_C_SOURCES := $(addprefix $(MAKEFILE_DIR)/, $(PROJECT_C_SOURCES) tests/$(TEST).c)
 PROJECT_C_INCLUDES := $(addprefix $(MAKEFILE_DIR)/, $(PROJECT_C_INCLUDES))
 PROJECT_BUILD_DIR := $(addprefix $(MAKEFILE_DIR)/, $(PROJECT_BUILD_DIR))
 

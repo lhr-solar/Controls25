@@ -1,0 +1,28 @@
+#ifdef SWITCHES_H
+#define SWITCHES_H
+
+#define CRUISE_SET_PORT (GPIOA)
+#define CRUISE_SET_PIN (GPIO_PIN_7)
+
+#define CRUISE_EN_PORT (GPIOC)
+#define CRUISE_EN_PIN (GPIO_PIN_5)
+
+#define IG1_PORT (GPIOB)
+#define IG1_PIN (GPIO_PIN_1)
+
+#define IG2_PORT (GPIOB)
+#define IG2_PIN (GPIO_PIN_10)
+
+#define HEARTBEAT_PORT (GPIOC)
+#define HEARTBEAT_PIN (GPIO_PIN_10)
+
+#define BPS_HAZARD_PORT (GPIOA)
+#define BPS_HARZARD_PIN (GPIO_PIN_6)
+
+#define REVERSE_PORT (GPIOB)
+#define REVERSE_PIN (GPIO_PIN_15)
+
+#define FORWARD_PORT (GPIOB)
+#define FORWARD_PIN (GPIO_PIN_2)
+
+#endif /* SWITCHES_H */
