@@ -5,9 +5,9 @@
 #define CAN_PCHG_CONTACTOR_SET_ID 0x1A5
 #define CAN_PCHG_CONTACTOR_GET_ID 0x1A6
 
-#define GPIO_MOTOR_CONTACTOR_PORT GPIOB
-#define GPIO_MOTOR_CONTACTOR_PIN GPIO_PIN_0
-#define GPIO_MOTOR_CONTACTOR_SENSE_PIN GPIO_PIN_1
+#define GPIO_MOTOR_CONTACTOR_PORT GPIOA
+#define GPIO_MOTOR_CONTACTOR_PIN GPIO_PIN_9
+#define GPIO_MOTOR_CONTACTOR_SENSE_PIN GPIO_PIN_10
 
 inline static bool contactors_set_gpio(GPIO_TypeDef *port, uint16_t pin, uint16_t sense_pin, bool state) {
     GPIO_PinState pin_state = (state)?GPIO_PIN_SET:GPIO_PIN_RESET;
@@ -48,6 +48,24 @@ inline static bool contactor_set_can(contactor_t contactor, bool state) {
     pchg_contactors = data[0];
 
     return (pchg_contactors & (1 << contactor));
+}
+
+void contactors_init(){
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+
+    HAL_GPIO_Init(GPIO_MOTOR_CONTACTOR_PORT, &(GPIO_InitTypeDef){
+        .Pin = GPIO_MOTOR_CONTACTOR_PIN,
+        .Mode = GPIO_MODE_OUTPUT_PP,
+        .Pull = GPIO_NOPULL,
+        .Speed = GPIO_SPEED_FREQ_LOW
+    });
+
+    HAL_GPIO_Init(GPIO_MOTOR_CONTACTOR_PORT, &(GPIO_InitTypeDef){
+        .Pin = GPIO_MOTOR_CONTACTOR_SENSE_PIN,
+        .Mode = GPIO_MODE_INPUT,
+        .Pull = GPIO_NOPULL,
+        .Speed = GPIO_SPEED_FREQ_LOW
+    });
 }
 
 bool contactors_set(contactor_t contactor, bool state) {
