@@ -40,11 +40,11 @@ inline static bool contactor_set_can(contactor_t contactor, bool state) {
     }
     
     // nonblocking send to update contactor values
-    can_send(&hcan1, &tx_header, data, false);
+    can_send(hcan1, &tx_header, data, false);
 
     // wait for response
     CAN_RxHeaderTypeDef rx_header;
-    can_recv(&hcan1, CAN_PCHG_CONTACTOR_GET_ID, &rx_header, data, true);
+    can_recv(hcan1, CAN_PCHG_CONTACTOR_GET_ID, &rx_header, data, true);
     pchg_contactors = data[0];
 
     return (pchg_contactors & (1 << contactor));
@@ -53,7 +53,7 @@ inline static bool contactor_set_can(contactor_t contactor, bool state) {
 bool contactors_set(contactor_t contactor, bool state) {
     switch (contactor) {
         case CONTACTOR_MOTOR:
-            return contactor_set_gpio(
+            return contactors_set_gpio(
                 GPIO_MOTOR_CONTACTOR_PORT, 
                 GPIO_MOTOR_CONTACTOR_PIN,
                 GPIO_MOTOR_CONTACTOR_SENSE_PIN,

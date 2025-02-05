@@ -10,7 +10,7 @@ typedef enum {
     NUM_CONTACTORS
 } contactor_t;
 
-void contactors_init();
-void contactors_set(contactor_t contactor, bool state);
+bool contactors_set(contactor_t contactor, bool state);
+bool contactors_get(contactor_t contactor);
 
 #endif

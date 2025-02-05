@@ -1,5 +1,7 @@
-#ifdef GPIO_H
+#ifndef GPIO_H
 #define GPIO_H
+
+#include "stm32xx_hal.h"
 
 // pin definitions
 #define PORT_CRUISE_SET (GPIOA)
@@ -29,9 +31,9 @@
 typedef enum {
   GPIO_ERR,
   GPIO_OK = 0
-} 
+} GPIO_status;
 
-HAL_StatusTypeDef gpio_init(void);
+void gpio_init(void);
 
 #endif /* GPIO_H */
 
