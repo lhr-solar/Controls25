@@ -12,7 +12,7 @@
 inline static bool contactors_set_gpio(GPIO_TypeDef *port, uint16_t pin, uint16_t sense_pin, bool state) {
     GPIO_PinState pin_state = (state)?GPIO_PIN_SET:GPIO_PIN_RESET;
     HAL_GPIO_WritePin(port, pin, pin_state);
-    HAL_Delay(2); // 2ms
+    HAL_Delay(10); // 10ms
     
     // return success based on sense pin
     return (HAL_GPIO_ReadPin(port, sense_pin) == pin_state);
